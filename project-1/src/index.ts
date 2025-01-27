@@ -1,11 +1,9 @@
 import express from "express";
 
 //our application, we are invoking express as a function
-
 const app = express();
 
 /*providing a port -> The ip address is the address of the device and the port is a location within the device*/
-
 const PORT = process.env.PORT || "8000";
 
 /*
@@ -13,6 +11,8 @@ We need to configure our server to interpret these incoming requests -> HTTP Ver
 
 verb -> GET
 Route -> "/"
+
+Verb + Route -> Endpoint
 */
 
 //first argument is the route to handle incoming get requests and then we define the logic using a callback fn.
@@ -28,7 +28,7 @@ app.get("/", (req, res) => {
 
 app.get("/dashboard", (req, res) => {
   console.log(req.method);
-  res.status(200).send("dashboard route");
+  res.status(200).send("<h1>Hello Dashboard</h1>");
 });
 
 /*Configuring our app to listen to an incoming request. We can pass the port as an argument to listen, and also a callback fn. Right now this server that's connected to the internet has an address that we can send network requests to. The address of this server connected to the network is: http://localhost:8000 (url). This is the local network for development.
