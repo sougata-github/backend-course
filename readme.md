@@ -33,10 +33,11 @@ We utilize **npm** (Node Package Manager) for managing packages in our backend p
 
 1. **Check Node.js and npm Installation**  
    To verify that Node.js and npm are installed on your system, run the following commands in your terminal:
-   ```bash
-   node -v
-   npm -v
-   ```
+
+```bash
+node -v
+npm -v
+```
 
 These commands display the installed versions of Node.js and npm. If they are not installed, download and install them from Node.js official website.
 
