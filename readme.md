@@ -67,3 +67,7 @@ npm install express
 ```
 
 All installed packages are stored in the `node_modules` folder.
+
+Use scripts to get your server up and running (for example: "dev") and then we can tell `npm` to run that script. In this case `npm run dev`
+
+To restart our server automatically on changes, use `nodemon` (dev dependency)
