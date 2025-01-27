@@ -31,8 +31,9 @@ The **Frontend** is what we see and interact with when we visit a website. It in
 
 We utilize **npm** (Node Package Manager) for managing packages in our backend projects.
 
-1. **Check Node.js and npm Installation**  
-   To verify that Node.js and npm are installed on your system, run the following commands in your terminal:
+- Check Node.js and npm Installation
+
+To verify that Node.js and npm are installed on your system, run the following commands in your terminal:
 
 ```bash
 node -v
