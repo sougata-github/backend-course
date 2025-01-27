@@ -43,3 +43,5 @@ npm init -y
 ```
 
 The above command initialises node.js backend project. It creates a package.json file which is like a specification file.
+
+Now when creating server side applications using Node.js, a common framework to use is `Express.js`
