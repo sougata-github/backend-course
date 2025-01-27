@@ -42,4 +42,4 @@ npm -v
 npm init -y
 ```
 
-The above command initialise node.js backend project. It creates a package.json file which is like a specification file.
+The above command initialises node.js backend project. It creates a package.json file which is like a specification file.
