@@ -25,23 +25,43 @@ The **Frontend** is what we see and interact with when we visit a website. It in
 
 <!-- Docker is used to containerize application and create a set of instructions for this container (virtual environment) that can be consistently across all systems. -->
 
-### Backend using JavaScript
+### Backend Development with JavaScript
 
-We use npm - Node Package Manager.
+#### Setting Up the Environment
 
-- Check if you've Node and NPM installed on your system
+We utilize **npm** (Node Package Manager) for managing packages in our backend projects.
 
-```bash
-node -v
-npm -v
-```
+1. **Check Node.js and npm Installation**  
+   To verify that Node.js and npm are installed on your system, run the following commands in your terminal:
+   ```bash
+   node -v
+   npm -v
+   ```
 
-- Initialise project using node
+These commands display the installed versions of Node.js and npm. If they are not installed, download and install them from Node.js official website.
+
+- Initialize the Project
+
+To set up a new Node.js project, use the following command:
 
 ```bash
 npm init -y
 ```
 
-The above command initialises node.js backend project. It creates a package.json file which is like a specification file.
+The above command initialises node.js backend project. It creates a package.json file which serves as a blueprint for your project, specifying its metadata and dependencies.
 
-Now when creating server side applications using Node.js, a common framework to use is `Express.js`
+### Building Server-Side Applications with Node.js and Express.js
+
+When creating server-side applications with Node.js, a widely used framework is `Express.js`
+
+- Adding Dependencies
+
+The `dependencies` section in the `package.json` file lists all the packages your project relies on. Adding Express.js as a dependency ensures that anyone downloading your project can install the required packages using `npm install`
+
+- To install Express.js, run:
+
+```bash
+npm install express
+```
+
+All installed packages are stored in the `node_modules` folder.
