@@ -1,1 +1,1 @@
-export const data = ["sougata"];
+export const data = ["Sougata"];

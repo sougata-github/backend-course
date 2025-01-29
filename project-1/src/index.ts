@@ -69,6 +69,13 @@ app.post("/api/data", (req, res) => {
   res.sendStatus(201);
 });
 
+app.delete("/api/data", (req, res) => {
+  data.pop();
+  console.log("Entry deleted from the end");
+
+  res.sendStatus(204);
+});
+
 //CRUD - Create, Read, Update and Delete
 
 /*Configuring our app to listen to an incoming request. We can pass the port as an argument to listen, and also a callback fn. Right now this server that's connected to the internet has an address that we can send network requests to. The address of this server connected to the network is: http://localhost:8000 (url). This is the local network for development.
