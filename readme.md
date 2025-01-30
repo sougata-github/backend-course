@@ -71,3 +71,5 @@ All installed packages are stored in the `node_modules` folder.
 Use scripts to get your server up and running (for example: "dev") and then we can tell `npm` to run that script. In this case `npm run dev`
 
 To restart our server automatically on changes, use `nodemon` (dev dependency)
+
+The `public` directory in a project is where static assets like HTML files, images, and other resources are served directly to the client without processing.
