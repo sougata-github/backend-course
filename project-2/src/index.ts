@@ -2,6 +2,9 @@ import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import express from "express";
 
+import todoRoutes from "./routes/todoRoutes.ts";
+import authRoutes from "./routes/authRoutes.ts";
+
 const app = express();
 
 const PORT = process.env.PORT || "8000";
@@ -38,6 +41,10 @@ app.use(express.json());
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "../public/index.html"));
 });
+
+//routes -> this takes all the routes adds them at the end of auth or todos
+app.use("/auth", authRoutes);
+app.use("/todos", todoRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running: http://localhost:${PORT}`);
