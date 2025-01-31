@@ -4,6 +4,7 @@ import express from "express";
 
 import todoRoutes from "./routes/todoRoutes.ts";
 import authRoutes from "./routes/authRoutes.ts";
+import authMiddleware from "./middleware.ts";
 
 const app = express();
 
@@ -44,7 +45,7 @@ app.get("/", (req, res) => {
 
 //routes -> this takes all the routes adds them at the end of auth or todos
 app.use("/auth", authRoutes);
-app.use("/todos", todoRoutes);
+app.use("/todos", authMiddleware, todoRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running: http://localhost:${PORT}`);

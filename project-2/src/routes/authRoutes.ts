@@ -2,7 +2,6 @@ import { Router } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
-import { User } from "../types/index.ts";
 import db from "../db.ts";
 
 const SECRET = process.env.JWT_SECRET || "backup_secret_key";
@@ -62,7 +61,7 @@ router.post("/login", (req, res) => {
 
     const isValidPassword = bcrypt.compareSync(
       password,
-      (user as User).password
+      (user as any).password
     );
 
     if (!isValidPassword) {
@@ -72,7 +71,7 @@ router.post("/login", (req, res) => {
     }
 
     //send out the token
-    const token = jwt.sign({ id: (user as User).id }, SECRET, {
+    const token = jwt.sign({ id: (user as any).id }, SECRET, {
       expiresIn: "24h",
     });
 
