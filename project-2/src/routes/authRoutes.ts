@@ -2,6 +2,7 @@ import { Router } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
+import { User } from "../types/index.ts";
 import db from "../db.ts";
 
 const SECRET = process.env.JWT_SECRET || "backup_secret_key";
@@ -42,10 +43,44 @@ router.post("/register", (req, res) => {
     res.json({ token });
   } catch (error) {
     console.log(error);
-    res.status(500).send("Internal server error");
+    res.status(500).send({ message: "Internal server error" });
   }
 });
 
-router.post("/login", (req, res) => {});
+router.post("/login", (req, res) => {
+  const { username, password } = req.body;
+
+  try {
+    const getUser = db.prepare(`
+        SELECT * FROM user WHERE username = ?
+        `);
+    const user = getUser.get(username);
+
+    if (!user) {
+      res.status(404).send({ message: "User not found!" });
+    }
+
+    const isValidPassword = bcrypt.compareSync(
+      password,
+      (user as User).password
+    );
+
+    if (!isValidPassword) {
+      res.status(401).send({
+        message: "Unauthorized!",
+      });
+    }
+
+    //send out the token
+    const token = jwt.sign({ id: (user as User).id }, SECRET, {
+      expiresIn: "24h",
+    });
+
+    res.json({ token });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({ message: "Internal server error" });
+  }
+});
 
 export default router;
