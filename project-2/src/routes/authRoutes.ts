@@ -70,7 +70,6 @@ router.post("/login", (req, res) => {
       });
     }
 
-    //send out the token
     const token = jwt.sign({ id: (user as any).id }, SECRET, {
       expiresIn: "24h",
     });
