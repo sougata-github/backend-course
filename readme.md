@@ -73,3 +73,5 @@ Use scripts to get your server up and running (for example: "dev") and then we c
 To restart our server automatically on changes, use `nodemon` (dev dependency)
 
 The `public` directory in a project is where static assets like HTML files, images, and other resources are served directly to the client without processing.
+
+Migrations are used for version control of a database, they are essentially records of all the modifications made to a db and when you run these migrations, every instance of your db gets updated to reflect these changes. Keeps your db schema in sync with your prisma schema.
