@@ -74,4 +74,69 @@ To restart our server automatically on changes, use `nodemon` (dev dependency)
 
 The `public` directory in a project is where static assets like HTML files, images, and other resources are served directly to the client without processing.
 
+#### Node.js + TypeScript Setup Guide
+
+Project setup
+
+- TypeScript Configuration (`tsconfig.json`)
+
+```json
+{
+  "compilerOptions": {
+    "target": "es2016",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
+    "resolveJsonModule": true,
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"]
+}
+```
+
+Depending on how you configure `package.json`, you must adjust import statements accordingly.
+
+- Default (CommonJS-like Behavior)
+
+  - package.json (No "type": "module" specified)
+  - Import style
+    ```typescript
+    import authRoutes from "./routes/authRoutes";
+    ```
+  - Dev Command
+    ```bash
+    nodemon --exec ts-node src/index.ts
+    ```
+
+When using `__dirname` and `__filename`
+
+- To use
+
+  ```typescript
+  import path from "path";
+  import { fileURLToPath } from "url";
+
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+  ```
+
+- Add "type": "module" `in package.json`
+
+- Update imports to include file extensions, like:
+
+  ```typescript
+  import authRoutes from "./routes/authRoutes.js";
+  ```
+
+- Change the dev command to:
+
+  ```bash
+  npx tsx npx tsx --watch src/index.ts
+  ```
+
 Migrations are used for version control of a database, they are essentially records of all the modifications made to a db and when you run these migrations, every instance of your db gets updated to reflect these changes. Keeps your db schema in sync with your prisma schema.
+
+The Docker file is an instruction sheet on how we can create an environment so that it has everything it needs to run our project.

@@ -1,19 +1,19 @@
-import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import express from "express";
+import path from "path";
 
-//Route imports
-import todoRoutes from "./routes/todoRoutes.ts";
-import authRoutes from "./routes/authRoutes.ts";
-import authMiddleware from "./middleware.ts";
+//Route imports (.js since type=module)
+import todoRoutes from "./routes/todoRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+import authMiddleware from "./middleware.js";
 
 const PORT = process.env.PORT || "8000";
 
 const app = express();
 
 // Resolve file paths
-const __fileName = fileURLToPath(import.meta.url);
-const __dirname = dirname(__fileName);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Middleware
 app.use(express.static(path.join(__dirname, "../public")));

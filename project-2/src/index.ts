@@ -1,10 +1,10 @@
-import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import express from "express";
+import path from "path";
 
-import todoRoutes from "./routes/todoRoutes.ts";
-import authRoutes from "./routes/authRoutes.ts";
-import authMiddleware from "./middleware.ts";
+import todoRoutes from "./routes/todoRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+import authMiddleware from "./middleware.js";
 
 const app = express();
 
@@ -16,17 +16,16 @@ get the 'file path' from the URL of the current module
 for example: file:///D:/WebDev/backend/src/index.ts
 
 fileURLToPath converts into normal file path: D:\WebDev\backend\src\index.ts on Windows
-*/
-const __fileName = fileURLToPath(import.meta.url);
 
-/*
 get directory name from file path
 
 for example: If __fileName is "D:\WebDev\backend\src\index.ts"
 
 then __dirname becomes "D:\WebDev\backend\src"
 */
-const __dirname = dirname(__fileName);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /*
 Middleware

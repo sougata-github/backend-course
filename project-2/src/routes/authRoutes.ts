@@ -2,7 +2,7 @@ import { Router } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 
-import db from "../db.ts";
+import db from "../db.js";
 
 const SECRET = process.env.JWT_SECRET || "backup_secret_key";
 

@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import db from "../db.ts";
+import db from "../db.js";
 
 const router = Router();
 
@@ -34,7 +34,7 @@ router.put("/:id", async (req: any, res) => {
   const { completed } = await req.body;
   const { id } = req.params;
 
-  const updatedTodo = await db.todo.update({
+  await db.todo.update({
     where: {
       id: parseInt(id),
       userId: parseInt(req.userId),
