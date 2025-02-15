@@ -23,8 +23,6 @@ The **Frontend** is what we see and interact with when we visit a website. It in
 
 - The browser receives the response, parses the **HTML**, and uses additional resources (CSS, JavaScript) to render and display the webpage to the user.
 
-<!-- Docker is used to containerize application and create a set of instructions for this container (virtual environment) that can be consistently across all systems. -->
-
 ### Backend Development with JavaScript
 
 #### Setting Up the Environment
@@ -74,7 +72,7 @@ To restart our server automatically on changes, use `nodemon` (dev dependency)
 
 The `public` directory in a project is where static assets like HTML files, images, and other resources are served directly to the client without processing.
 
-#### Node.js + TypeScript Setup Guide
+#### Node.js + Express + TypeScript Setup Guide
 
 Project setup
 
@@ -139,4 +137,272 @@ When using `__dirname` and `__filename`
 
 Migrations are used for version control of a database, they are essentially records of all the modifications made to a db and when you run these migrations, every instance of your db gets updated to reflect these changes. Keeps your db schema in sync with your prisma schema.
 
+Docker is used to containerize application and create a set of instructions for this container (virtual environment) that can be consistently across all systems.
+
 The Docker file is an instruction sheet on how we can create an environment so that it has everything it needs to run our project.
+
+We would also require a config sheet to boot up all these docker environments -> `docker-compose.yaml` file
+
+#### Backend Docker Setup Guide
+
+This guide will walk you through setting up the **backend Todo app** using **Docker, PostgreSQL, and Prisma**.
+
+---
+
+- Install Docker
+
+Make sure you have **Docker Desktop** installed before proceeding.
+
+- [Download Docker Desktop](https://www.docker.com/products/docker-desktop/)
+
+---
+
+- Clone the Repository
+
+```bash
+git clone https://github.com/your-username/backend-todo-app.git
+cd backend-todo-app
+```
+
+- Generate the Prisma Client
+
+```bash
+npx prisma generate
+```
+
+- Build Docker Images
+
+```bash
+docker compose build
+```
+
+- Create and Apply PostgreSQL Migrations
+
+```bash
+docker compose run app npx prisma migrate dev --name init
+```
+
+- If migrations need to be applied later
+
+```bash
+docker compose run app npx prisma migrate deploy
+```
+
+Boot Up Docker Containers
+
+- To start the application with 2 containers
+
+```bash
+docker compose up
+```
+
+- To run it in the background
+
+```bash
+docker compose up -d
+```
+
+Running in detached mode (-d) means it won’t lock your terminal. You’ll need to stop it via Docker Desktop or `docker compose down`.
+
+Access the PostgreSQL Database
+
+- While containers are running, open a new terminal and run
+
+```bash
+docker exec -it postgres-db psql -U postgres -d my-app
+```
+
+This lets you interact with the database using SQL commands.
+
+Stopping Docker Containers
+
+```bash
+docker compose down
+```
+
+Delete All Docker Containers
+
+```bash
+docker system prune
+```
+
+Once everything is running, open:
+`http://localhost:8000` (or `localhost:3000` if changed)
+
+You can register, log in, and manage your app from there.
+
+#### Docker commands:
+
+Container Management
+
+- List running containers
+
+```bash
+docker ps
+```
+
+- List all containers
+
+```bash
+docker ps -a
+```
+
+- Stop a runnning container
+
+```bash
+docker stop <container_id>
+```
+
+- Start a stopped container
+
+```bash
+docker start <container_id>
+```
+
+- Restart a container
+
+```bash
+docker restart <container_id>
+```
+
+- Remove a container
+
+```bash
+docker rm <container_id>
+```
+
+Image Management
+
+- List all downloaded images
+
+```bash
+docker images
+```
+
+- Remove an image
+
+```bash
+docker rmi <image_id>
+```
+
+- Download an image from Docker Hub
+
+```bash
+docker pull <image_name>
+```
+
+- Build an image from a Dockerfile
+
+```bash
+docker build -t <image_name>
+```
+
+Docker Compose
+
+- Start all services in `docker-compose.yaml`
+
+```bash
+docker compose up
+```
+
+- Rebuild images before starting services
+
+```bash
+docker compose up --build
+```
+
+- Start services in detached mode (background)
+
+```bash
+docker compose up -d
+```
+
+- Stop and remove all containers
+
+```bash
+docker compose down
+```
+
+- View real-time logs of all services
+
+```bash
+docker compose logs -f
+```
+
+Volumes & Networks
+
+- List all volumes
+
+```bash
+docker volume ls
+```
+
+- Remove a volume
+
+```bash
+docker volume rm <volume_name>
+```
+
+- List all networks
+
+```bash
+docker network ls
+```
+
+- Remove a network
+
+```bash
+docker network rm <network_name>
+```
+
+Install & Debug
+
+- View logs od a container
+
+```bash
+docker logs <container_id>
+```
+
+- Open a shell inside a running container
+
+```bash
+docker exec -it <container_id> sh
+```
+
+- Get detailed info about a container
+
+```bash
+docker inspect <container_id>
+```
+
+- Show resource usage of running containers
+
+```bash
+docker stats
+```
+
+Cleanup
+
+- Remove unused container, images, and networks
+
+```bash
+docker system prune
+```
+
+- Remove unused volumes
+
+```bash
+docker volume prune
+```
+
+- Remove unused networks
+
+```bash
+docker network prune
+```
+
+- Remove unused images
+
+```bash
+docker image prune
+```
