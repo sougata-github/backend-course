@@ -9,7 +9,7 @@ const router = Router();
 
 const SECRET = process.env.JWT_SECRET || "backup_secret_key";
 
-router.get("/register", async (req, res) => {
+router.post("/register", async (req, res) => {
   const { username, password } = req.body;
 
   const hashedPassword = bcrypt.hashSync(password, 8);
@@ -40,7 +40,7 @@ router.get("/register", async (req, res) => {
   }
 });
 
-router.get("/login", async (req, res) => {
+router.post("/login", async (req, res) => {
   const { username, password } = req.body;
 
   try {
