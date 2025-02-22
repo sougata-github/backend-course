@@ -132,7 +132,7 @@ When using `__dirname` and `__filename`
 - Change the dev command to:
 
   ```bash
-  npx tsx npx tsx --watch src/index.ts
+  npx tsx --watch src/index.ts
   ```
 
 Migrations are used for version control of a database, they are essentially records of all the modifications made to a db and when you run these migrations, every instance of your db gets updated to reflect these changes. Keeps your db schema in sync with your prisma schema.
